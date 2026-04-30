@@ -17,7 +17,7 @@ export class AppComponent {
 logoUrl = 'https://res.cloudinary.com/dpwulp3at/image/upload/v1777571511/public_1_ojuj6f.png';
 
   // ✅ Dropdown
-  eventOptions = ['Workshop 1', 'Workshop 2', 'Webinar'];
+  eventOptions = ['SATS Exam Prep - Rapid Course', 'Webinar'];
 
   // ✅ States
   submitting = false;
