@@ -455,9 +455,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 /* ── Hero form card (right) ── */
 .hero-form-wrap {
-  /* On desktop: 420px column, scrollable card */
+  display: block;
 }
-
 .form-card {
   background: var(--white);
   border-radius: var(--radius-xl);
