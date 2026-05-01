@@ -1,167 +1,375 @@
-<div class="page-wrapper">
-  <!-- Full-screen background (fixed) -->
-  <div class="bg-overlay"></div>
+<!-- ╔══════════════════════════════════════════════╗
+     ║  SEHYOG ACADEMY  –  Full Website Component  ║
+     ╚══════════════════════════════════════════════╝ -->
 
-  <!-- Scrollable content -->
-  <div class="page-content">
-    <div class="form-card">
+<!-- ━━━━━━━━━━━━━━━━━━━━  NAVBAR  ━━━━━━━━━━━━━━━━━━━━ -->
+<header class="navbar" [class.scrolled]="navScrolled">
+  <div class="nav-inner">
+    <a class="nav-brand" href="#">
+      <img [src]="logoUrl" alt="Sehyog Academy" class="nav-logo" />
+    </a>
 
-      <!-- TOP BANNER (optional hero image) -->
-      <div class="top-banner" *ngIf="topBannerImageUrl">
-        <img [src]="topBannerImageUrl" alt="Banner" class="banner-img" />
+    <!-- Desktop links -->
+    <nav class="nav-links">
+      <a href="#hero"    class="nav-link">Home</a>
+      <a href="#events"  class="nav-link">Webinars</a>
+      <a href="#courses" class="nav-link">Courses</a>
+      <a href="#events"  class="nav-link">Upcoming Events</a>
+      <a href="#footer"  class="nav-link">Contact</a>
+      <a href="#register" class="nav-cta">Enroll Now</a>
+    </nav>
+
+    <!-- Hamburger (mobile) -->
+    <button class="hamburger" (click)="toggleMobileMenu()" [class.open]="mobileMenuOpen"
+      aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <!-- Mobile drawer -->
+  <div class="mobile-menu" [class.open]="mobileMenuOpen">
+    <a href="#hero"    class="mob-link" (click)="closeMobileMenu()">Home</a>
+    <a href="#events"  class="mob-link" (click)="closeMobileMenu()">Webinars</a>
+    <a href="#courses" class="mob-link" (click)="closeMobileMenu()">Courses</a>
+    <a href="#events"  class="mob-link" (click)="closeMobileMenu()">Upcoming Events</a>
+    <a href="#footer"  class="mob-link" (click)="closeMobileMenu()">Contact</a>
+    <a href="#register" class="mob-cta"  (click)="closeMobileMenu()">Enroll Now</a>
+  </div>
+</header>
+
+
+<!-- ━━━━━━━━━━━━━━━━━━━━  HERO  ━━━━━━━━━━━━━━━━━━━━━━ -->
+<section id="hero" class="hero-section">
+  <!-- Decorative blobs -->
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <div class="hero-inner">
+
+    <!-- LEFT: Copy -->
+    <div class="hero-copy">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        UK &amp; UAE's Next-Gen Learning Engine
       </div>
 
-      <!-- HEADER: Logo (left) + Title (right) -->
-      <div class="card-header">
-        <div class="header-logo">
-          <img [src]="logoUrl" alt="Sehyog Academy Logo" class="logo-img" />
-        </div>
-        <div class="header-text">
-          <h1 class="form-title">REGISTRATION FORM</h1>
-          <p class="form-subtitle">
-            Sehyog Academy Registration Form – Enroll Now for Upcoming Courses and Webinars
-          </p>
-        </div>
+      <h1 class="hero-heading">
+        Learn, Grow &amp;<br />
+        <span class="heading-gradient">Succeed</span> with<br />
+        Sehyog Academy
+      </h1>
+
+      <p class="hero-sub">
+        World-class webinars, SATs prep, career guidance &amp; skill-development courses
+        crafted by expert educators — available live and on-demand.
+      </p>
+
+      <ul class="hero-bullets">
+        <li><span class="bullet-icon">✦</span> Live &amp; recorded webinars every week</li>
+        <li><span class="bullet-icon">✦</span> SATs &amp; 11+ exam preparation programmes</li>
+        <li><span class="bullet-icon">✦</span> Industry-certified courses for all ages</li>
+        <li><span class="bullet-icon">✦</span> Personal mentorship &amp; student support</li>
+      </ul>
+
+      <div class="hero-actions">
+        <a href="#events"   class="btn-primary">Explore Webinars</a>
+        <a href="#events"   class="btn-outline">Upcoming Events ↗</a>
       </div>
 
-      <!-- DIVIDER -->
-      <hr class="section-divider" />
+      <!-- Trust bar -->
+      <div class="trust-bar">
+        <div class="trust-stat"><strong>2,400+</strong><span>Students</span></div>
+        <div class="trust-divider"></div>
+        <div class="trust-stat"><strong>120+</strong><span>Live Sessions</span></div>
+        <div class="trust-divider"></div>
+        <div class="trust-stat"><strong>98%</strong><span>Satisfaction</span></div>
+      </div>
+    </div>
 
-      <!-- FORM -->
-      <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" class="reg-form" novalidate>
-
-        <!-- Event Name -->
-        <div class="form-group">
-          <label class="field-label">Event Name <span class="required">*</span></label>
-          <div class="select-wrapper">
-            <select formControlName="eventName" class="form-select"
-              [class.invalid]="isInvalid('eventName')">
-              <option value="" disabled selected></option>
-              <option *ngFor="let event of eventOptions" [value]="event">{{ event }}</option>
-            </select>
-            <span class="select-arrow">&#8964;</span>
+    <!-- RIGHT: Registration form card -->
+    <div id="register" class="hero-form-wrap">
+      <div class="form-card">
+        <div class="form-card-header">
+          <img [src]="logoUrl" alt="Logo" class="form-logo" />
+          <div>
+            <h2 class="form-card-title">Registration Form</h2>
+            <p class="form-card-sub">Sehyog Academy Resgistration Form – Enroll Now for Upcoming Courses and Webinars</p>
           </div>
-          <div class="error-msg" *ngIf="isInvalid('eventName')">Event name is required.</div>
         </div>
+        <hr class="card-divider" />
 
-        <!-- Parent Name -->
-        <div class="form-group">
-          <label class="field-label">Name <span class="required">*</span></label>
-          <div class="name-row" formGroupName="parentName">
-            <div class="name-col">
-              <div class="input-icon-wrap">
-                <span class="input-icon">&#9998;</span>
-                <input type="text" formControlName="firstName" placeholder="e.g. Rebecca"
-                  class="form-input" [class.invalid]="isInvalidNested('parentName','firstName')" />
+        <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" class="reg-form" novalidate>
+
+          <!-- Event Name -->
+          <div class="fg">
+            <label class="fl">Event Name <span class="req">*</span></label>
+            <div class="sel-wrap">
+              <select formControlName="eventName" class="fi fi-sel"
+                [class.invalid]="isInvalid('eventName')">
+                <option value="" disabled selected>Select an event…</option>
+                <option *ngFor="let e of eventOptions" [value]="e">{{ e }}</option>
+              </select>
+              <span class="sel-arr">⌄</span>
+            </div>
+            <span class="err" *ngIf="isInvalid('eventName')">Required.</span>
+          </div>
+
+          <!-- Parent Name -->
+          <div class="fg">
+            <label class="fl">Parent / Guardian Name <span class="req">*</span></label>
+            <div class="two-col" formGroupName="parentName">
+              <div>
+                <div class="icon-wrap"><span class="fi-icon">✎</span>
+                  <input type="text" formControlName="firstName" placeholder="First"
+                    class="fi" [class.invalid]="isInvalidNested('parentName','firstName')" />
+                </div>
+                <span class="sub-lbl">First Name</span>
+                <span class="err" *ngIf="isInvalidNested('parentName','firstName')">Required.</span>
               </div>
-              <span class="sub-label">First Name</span>
-              <div class="error-msg" *ngIf="isInvalidNested('parentName','firstName')">Required.</div>
-            </div>
-            <div class="name-col">
-              <input type="text" formControlName="lastName" placeholder="John"
-                class="form-input" [class.invalid]="isInvalidNested('parentName','lastName')" />
-              <span class="sub-label">Last Name</span>
-              <div class="error-msg" *ngIf="isInvalidNested('parentName','lastName')">Required.</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Student Name -->
-        <div class="form-group">
-          <label class="field-label">Student Name <span class="required">*</span></label>
-          <div class="name-row" formGroupName="studentName">
-            <div class="name-col">
-              <div class="input-icon-wrap">
-                <span class="input-icon">&#9998;</span>
-                <input type="text" formControlName="firstName" placeholder="e.g. Rebecca"
-                  class="form-input" [class.invalid]="isInvalidNested('studentName','firstName')" />
+              <div>
+                <input type="text" formControlName="lastName" placeholder="Last"
+                  class="fi" [class.invalid]="isInvalidNested('parentName','lastName')" />
+                <span class="sub-lbl">Last Name</span>
+                <span class="err" *ngIf="isInvalidNested('parentName','lastName')">Required.</span>
               </div>
-              <span class="sub-label">First Name</span>
-              <div class="error-msg" *ngIf="isInvalidNested('studentName','firstName')">Required.</div>
-            </div>
-            <div class="name-col">
-              <input type="text" formControlName="lastName" placeholder="John"
-                class="form-input" [class.invalid]="isInvalidNested('studentName','lastName')" />
-              <span class="sub-label">Last Name</span>
-              <div class="error-msg" *ngIf="isInvalidNested('studentName','lastName')">Required.</div>
             </div>
           </div>
-        </div>
 
-        <!-- Phone -->
-        <div class="form-group">
-          <label class="field-label">Phone <span class="required">*</span></label>
-          <div class="input-icon-wrap">
-            <span class="input-icon">&#128222;</span>
-            <input type="tel" formControlName="phone" class="form-input"
-              [class.invalid]="isInvalid('phone')" />
+          <!-- Student Name -->
+          <div class="fg">
+            <label class="fl">Student Name <span class="req">*</span></label>
+            <div class="two-col" formGroupName="studentName">
+              <div>
+                <div class="icon-wrap"><span class="fi-icon">✎</span>
+                  <input type="text" formControlName="firstName" placeholder="First"
+                    class="fi" [class.invalid]="isInvalidNested('studentName','firstName')" />
+                </div>
+                <span class="sub-lbl">First Name</span>
+                <span class="err" *ngIf="isInvalidNested('studentName','firstName')">Required.</span>
+              </div>
+              <div>
+                <input type="text" formControlName="lastName" placeholder="Last"
+                  class="fi" [class.invalid]="isInvalidNested('studentName','lastName')" />
+                <span class="sub-lbl">Last Name</span>
+                <span class="err" *ngIf="isInvalidNested('studentName','lastName')">Required.</span>
+              </div>
+            </div>
           </div>
-          <div class="error-msg" *ngIf="isInvalid('phone')">Valid phone number is required.</div>
-        </div>
 
-        <!-- Email -->
-        <div class="form-group">
-          <label class="field-label">Email <span class="required">*</span></label>
-          <div class="input-icon-wrap">
-            <span class="input-icon">&#9993;</span>
-            <input type="email" formControlName="email" placeholder="e.g. rebecca@zylker.com"
-              class="form-input" [class.invalid]="isInvalid('email')" />
+          <!-- Phone -->
+          <div class="fg">
+            <label class="fl">Phone <span class="req">*</span></label>
+            <div class="icon-wrap"><span class="fi-icon">📞</span>
+              <input type="tel" formControlName="phone" class="fi"
+                [class.invalid]="isInvalid('phone')" /></div>
+            <span class="err" *ngIf="isInvalid('phone')">Valid phone required.</span>
           </div>
-          <div class="error-msg" *ngIf="isInvalid('email')">Valid email is required.</div>
-        </div>
 
-        <!-- Student School Year -->
-        <div class="form-group">
-          <label class="field-label">Student School Year <span class="required">*</span></label>
-          <div class="input-icon-wrap">
-            <span class="input-icon">&#127891;</span>
-            <input type="text" formControlName="schoolYear" class="form-input"
-              [class.invalid]="isInvalid('schoolYear')" />
+          <!-- Email -->
+          <div class="fg">
+            <label class="fl">Email <span class="req">*</span></label>
+            <div class="icon-wrap"><span class="fi-icon">✉</span>
+              <input type="email" formControlName="email" placeholder="you@example.com"
+                class="fi" [class.invalid]="isInvalid('email')" /></div>
+            <span class="err" *ngIf="isInvalid('email')">Valid email required.</span>
           </div>
-          <div class="error-msg" *ngIf="isInvalid('schoolYear')">School year is required.</div>
-        </div>
 
-        <!-- Terms and Conditions -->
-        <div class="form-group">
-          <label class="field-label">Terms and Conditions <span class="required">*</span></label>
-          <div class="terms-box">
-            <p><strong>Parent / Care Taker Consent</strong> – The session will be recorded for training &amp; quality
-              purpose and may be used for promotional purposes on our social media platforms, website,
-              newsletters, and other marketing materials.</p>
-            <p><strong>By signing this form, you consent to the following:</strong></p>
-            <ol>
-              <li>I consent to be recorded and/or filmed during the session.</li>
-              <li>I understand that these materials may be used for promotional purposes, including but not
-                limited to social media, websites, and printed materials, without compensation or further
-                notification.</li>
-              <li>I waive any rights to inspect or approve the finished product or any use to which it may be
-                applied.</li>
-              <li>I release SEHYOG Academy, its representatives, and assigns from all claims and liabilities
-                related to the use of my image, likeness, or voice.</li>
-            </ol>
+          <!-- School Year -->
+          <div class="fg">
+            <label class="fl">Student School Year <span class="req">*</span></label>
+            <div class="icon-wrap"><span class="fi-icon">🎓</span>
+              <input type="text" formControlName="schoolYear" class="fi"
+                [class.invalid]="isInvalid('schoolYear')" /></div>
+            <span class="err" *ngIf="isInvalid('schoolYear')">Required.</span>
           </div>
-          <div class="checkbox-row">
-            <input type="checkbox" id="termsAccepted" formControlName="termsAccepted"
-              class="checkbox-input" />
-            <label for="termsAccepted" class="checkbox-label">I accept the Terms and Conditions.</label>
-          </div>
-          <div class="error-msg" *ngIf="isInvalid('termsAccepted')">You must accept the terms.</div>
-        </div>
 
-        <!-- Submit -->
-        <div class="submit-row">
+          <!-- Terms -->
+          <div class="fg">
+            <label class="fl">Terms &amp; Conditions <span class="req">*</span></label>
+            <div class="terms-scroll">
+              <p><strong>Parent / Care Taker Consent</strong> – The session will be recorded for
+                training &amp; quality purposes and may be used for promotional purposes on our
+                social media platforms, website, newsletters and other marketing materials.</p>
+              <p><strong>By signing this form, you consent to the following:</strong></p>
+              <ol>
+                <li>I consent to be recorded and/or filmed during the session.</li>
+                <li>I understand these materials may be used for promotional purposes without compensation or further notification.</li>
+                <li>I waive any rights to inspect or approve the finished product.</li>
+                <li>I release SEHYOG Academy from all claims related to my image, likeness, or voice.</li>
+              </ol>
+            </div>
+            <label class="chk-row">
+              <input type="checkbox" formControlName="termsAccepted" class="chk" />
+              <span>I accept the Terms &amp; Conditions.</span>
+            </label>
+            <span class="err" *ngIf="isInvalid('termsAccepted')">You must accept the terms.</span>
+          </div>
+
+          <!-- Submit -->
           <button type="submit" class="submit-btn" [disabled]="submitting">
-            <span *ngIf="!submitting">Submit</span>
-            <span *ngIf="submitting">Submitting…</span>
+            {{ submitting ? 'Submitting…' : 'Register Now' }}
           </button>
-        </div>
 
-        <!-- Success Message -->
-        <div class="success-msg" *ngIf="submitted">
-          ✅ Registration submitted successfully!
-        </div>
+          <div class="success-toast" *ngIf="submitted">
+            🎉 You're registered! Check your email for confirmation.
+          </div>
+        </form>
+      </div>
+    </div>
 
-      </form>
+  </div><!-- /hero-inner -->
+</section>
+
+
+<!-- ━━━━━━━━━━━━━━  UPCOMING EVENTS  ━━━━━━━━━━━━━━━━━ -->
+<section id="events" class="events-section">
+  <div class="section-inner events-grid">
+
+    <!-- LEFT: event list -->
+    <div class="events-list-col">
+      <span class="section-eyebrow">What's On</span>
+      <h2 class="section-heading">Upcoming Events<br />&amp; Webinars</h2>
+      <p class="section-sub">
+        Reserve your spot in our next live sessions. All events are FREE for enrolled students.
+      </p>
+
+      <div class="event-cards">
+        <div class="event-card" *ngFor="let ev of upcomingEvents">
+          <div class="ev-date-badge">
+            <span class="ev-day">{{ ev.day }}</span>
+            <span class="ev-mon">{{ ev.month }}</span>
+          </div>
+          <div class="ev-info">
+            <h3 class="ev-title">{{ ev.title }}</h3>
+            <p class="ev-desc">{{ ev.desc }}</p>
+            <div class="ev-meta">
+              <span class="ev-tag">{{ ev.tag }}</span>
+              <span class="ev-time">{{ ev.time }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: quick register CTA -->
+    <div class="events-cta-col">
+      <div class="quick-cta-card">
+        <div class="qcta-icon">📅</div>
+        <h3 class="qcta-title">Don't Miss Out!</h3>
+        <p class="qcta-text">
+          Seats are limited. Register using the form above and secure your spot in our
+          next live session today.
+        </p>
+        <a href="#register" class="btn-primary qcta-btn">Register Now →</a>
+
+        <div class="qcta-divider"></div>
+
+        <h4 class="qcta-sub">Why join Sehyog?</h4>
+        <ul class="qcta-list">
+          <li>✅ Expert-led sessions</li>
+          <li>✅ Interactive live Q&amp;A</li>
+          <li>✅ Recordings available after</li>
+          <li>✅ Certificate of participation</li>
+          <li>✅ Free for enrolled students</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ━━━━━━━━━━━━━━━  FEATURES / ABOUT  ━━━━━━━━━━━━━━━ -->
+<section id="courses" class="features-section">
+  <div class="section-inner">
+    <div class="features-header">
+      <span class="section-eyebrow light">Why Sehyog Academy</span>
+      <h2 class="section-heading light">Everything You Need to Excel</h2>
+      <p class="section-sub light">
+        From curriculum-aligned courses to live mentorship, we've built a complete learning
+        ecosystem for students across the UK and UAE.
+      </p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feat-card" *ngFor="let f of features">
+        <div class="feat-icon-ring">{{ f.icon }}</div>
+        <h3 class="feat-title">{{ f.title }}</h3>
+        <p class="feat-desc">{{ f.desc }}</p>
+        <a href="#register" class="feat-link">Learn more →</a>
+      </div>
     </div>
   </div>
-</div>
+</section>
+
+
+<!-- ━━━━━━━━━━━━━━━━━━━  FOOTER  ━━━━━━━━━━━━━━━━━━━━━ -->
+<footer id="footer" class="site-footer">
+  <div class="footer-inner">
+
+    <div class="footer-brand-col">
+      <img [src]="logoUrl" alt="Sehyog Academy" class="footer-logo" />
+      <p class="footer-tagline">
+        The Next-Gen Learning Engine — empowering students across the UK &amp; UAE with
+        world-class education, mentorship, and skill development.
+      </p>
+      <div class="social-icons">
+        <a href="#" class="soc" aria-label="Facebook">f</a>
+        <a href="#" class="soc" aria-label="Instagram">in</a>
+        <a href="#" class="soc" aria-label="Twitter/X">𝕏</a>
+        <a href="#" class="soc" aria-label="YouTube">▶</a>
+        <a href="#" class="soc" aria-label="LinkedIn">li</a>
+      </div>
+    </div>
+
+    <div class="footer-links-col">
+      <h4 class="footer-col-title">Quick Links</h4>
+      <ul class="footer-list">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#events">Webinars</a></li>
+        <li><a href="#courses">Courses</a></li>
+        <li><a href="#events">Upcoming Events</a></li>
+        <li><a href="#register">Enroll Now</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-links-col">
+      <h4 class="footer-col-title">Programmes</h4>
+      <ul class="footer-list">
+        <li><a href="#">SATs Preparation</a></li>
+        <li><a href="#">11+ Exam Coaching</a></li>
+        <li><a href="#">Career Guidance</a></li>
+        <li><a href="#">Skill Development</a></li>
+        <li><a href="#">Live Webinars</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-contact-col">
+      <h4 class="footer-col-title">Contact Us</h4>
+      <ul class="footer-contact-list">
+        <li>
+          <span class="contact-icon">✉</span>
+          <a href="mailto:info@sehyogacademy.com">info&#64;sehyogacademy.com</a>
+        </li>
+        <li>
+          <span class="contact-icon">📞</span>
+          <a href="tel:+441234567890">+44 (0) 123 456 7890</a>
+        </li>
+        <li>
+          <span class="contact-icon">📞</span>
+          <a href="tel:+97112345678">+971 (0) 12 345 678</a>
+        </li>
+        <li>
+          <span class="contact-icon">📍</span>
+          <span>UK &amp; UAE</span>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© {{ currentYear }} Sehyog Academy. All rights reserved. | UK &amp; UAE</p>
+  </div>
+</footer>
